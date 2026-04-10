@@ -118,7 +118,7 @@ class GerenciadorDeReservas:
         )
 
     # ─────────────────────────────────────────────
-    # DISPONIBILIDADE  ← exigido pelo enunciado
+    # DISPONIBILIDADE
     # ─────────────────────────────────────────────
     def verificar_disponibilidade(
         self,
@@ -157,7 +157,7 @@ class GerenciadorDeReservas:
         return len(conflitos) == 0   # True = disponível
 
     # ─────────────────────────────────────────────
-    # RESERVAS  ← exigido pelo enunciado
+    # RESERVAS
     # ─────────────────────────────────────────────
     def criar_reserva(
         self,
@@ -322,7 +322,7 @@ class GerenciadorDeReservas:
         )
 
     # ─────────────────────────────────────────────
-    # EXPORTAÇÃO PARA CSV  ← exigido pelo enunciado
+    # EXPORTAÇÃO PARA CSV
     # ─────────────────────────────────────────────
     def exportar_clientes_para_csv(self):
         """Exporta todos os clientes para clientes.csv"""
