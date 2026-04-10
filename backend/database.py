@@ -8,7 +8,7 @@ DB_CONFIG = {
     "host":     "localhost",
     "port":     3306,
     "user":     "root",
-    "password": "36054874",
+    "password": "Senha",
     "database": "hotel_db"
 }
 
