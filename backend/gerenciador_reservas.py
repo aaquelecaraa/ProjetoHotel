@@ -176,6 +176,10 @@ class GerenciadorDeReservas:
         if cliente is None or quarto is None:
             print("[ERRO] Cliente ou quarto inexistente.")
             return None
+        
+        if quarto.status != "disponivel":
+            print(f"[ERRO] Quarto com status '{quarto.status}' não pode ser reservado.")
+            return None
 
         # Verifica disponibilidade antes de criar
         if not self.verificar_disponibilidade(quarto_id, data_checkin, data_checkout):
@@ -198,6 +202,11 @@ class GerenciadorDeReservas:
 
         dt_checkin  = datetime.strptime(data_checkin,  "%Y-%m-%d").date()
         dt_checkout = datetime.strptime(data_checkout, "%Y-%m-%d").date()
+
+        executar_query(
+            "UPDATE quartos SET status = 'ocupado' WHERE id = %s",
+            (quarto_id,)
+        )
 
         return Reserva(
             id=novo_id,
@@ -266,7 +275,14 @@ class GerenciadorDeReservas:
             return False
 
         query = "UPDATE reservas SET status = 'cancelada' WHERE id = %s"
-        return executar_query(query, (reserva_id,)) is not None
+        resultado = executar_query(query, (reserva_id,))
+        if resultado is not None:
+            executar_query(
+                "UPDATE quartos SET status = 'disponivel' WHERE id = %s",
+                (reserva.quarto_id,)
+        )
+        return resultado is not None
+    
 
     def listar_reservas(self) -> list:
         """

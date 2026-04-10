@@ -142,7 +142,7 @@ elif menu == "Criar Reserva":
                     if reserva:
                         st.success(f"Reserva criada com sucesso! ID: {reserva.id}")
                     else:
-                        st.error("Erro ao criar reserva.")
+                        st.error("Não foi possível criar a reserva. O quarto pode estar ocupado, em manutenção ou com datas conflitantes.")
 
 
 # ─────────────────────────────────────────
